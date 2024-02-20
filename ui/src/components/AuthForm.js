@@ -51,6 +51,13 @@ const AuthForm = () => {
 
   return (
     <div className={`container ${isSignUpMode ? "sign-up-mode" : ""}`}>
+      <div className="logo-container-left">
+        <img
+          src={require("../assets/Group 13.png")}
+          alt="Logo"
+          className="logo"
+        />
+      </div>
       <div className="forms-container">
         <div className="signin-signup">
           <form onSubmit={handleSubmit} className="sign-in-form">
@@ -112,6 +119,14 @@ const AuthForm = () => {
             Admin Login
           </Link>
         </div>
+      </div>
+
+      <div className="logo-container right">
+        <img
+          src={require("../assets/Group 13.png")}
+          alt="Logo"
+          className="logo"
+        />
       </div>
 
       <div className="panels-container">

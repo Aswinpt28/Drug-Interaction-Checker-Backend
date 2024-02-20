@@ -1,16 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-	font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 body,
 input {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .container {
@@ -130,13 +129,13 @@ form.sign-in-form {
 }
 
 .social-icon:hover {
-  color: #23408E;
-  border-color: #23408E;
+  color: #23408e;
+  border-color: #23408e;
 }
 
 .btn {
   width: 150px;
-  background-color: #23408E;
+  background-color: #23408e;
   border: none;
   outline: none;
   height: 49px;
@@ -150,7 +149,7 @@ form.sign-in-form {
 }
 
 .btn:hover {
-  background-color: #23386F;
+  background-color: #23386f;
 }
 .panels-container {
   position: absolute;
@@ -170,7 +169,7 @@ form.sign-in-form {
   top: -10%;
   right: 48%;
   transform: translateY(-50%);
-  background-image: linear-gradient(-45deg, #23408E 0%, #1945DA 100%);
+  background-image: linear-gradient(-45deg, #23408e 0%, #1945da 100%);
   transition: 1.8s ease-in-out;
   border-radius: 50%;
   z-index: 6;
@@ -410,9 +409,29 @@ form.sign-in-form {
 }
 
 .admin-btn {
-  background-color: #23386F;
+  background-color: #23386f;
   color: white;
   padding: 10px;
   border: none;
   cursor: pointer;
+}
+
+.logo-container {
+  position: fixed;
+  top: 10px;
+  width: 50px;
+  height: auto;
+}
+
+.logo-container.left {
+  left: 10px;
+}
+
+.logo-container.right {
+  right: 175px;
+}
+
+.logo {
+  width: 100%;
+  height: 100%;
 }

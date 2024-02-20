@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Toolbar from "@mui/material/Toolbar";
@@ -12,14 +11,27 @@ const Navbar = ({
   handleSignIn,
   handleSignUp,
 }) => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsScrolled(scrollTop > 60); // Adjust this value based on your needs
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const linkStyle = {
     display: "flex",
     alignItems: "center",
-    color: "#23408E",
+    color: isScrolled ? "#fff" : "#23408E",
     fontWeight: "bold",
     marginLeft: "20px",
   };
 
+  // eslint-disable-next-line no-unused-vars
   const lastLinkStyle = {
     ...linkStyle,
     marginLeft: "auto",
@@ -27,8 +39,11 @@ const Navbar = ({
 
   return (
     <AppBar
-      position="static"
-      style={{ backgroundColor: "white" }}
+      position="fixed"
+      style={{
+        backgroundColor: isScrolled ? "#23408E" : "transparent",
+        transition: "background-color 0.3s ease",
+      }}
       className="navbar"
     >
       <Toolbar style={{ display: "flex" }}>
@@ -52,7 +67,7 @@ const Navbar = ({
         {isAuthenticated ? (
           <Button
             color="primary"
-            style={{ marginLeft: "300px" }}
+            style={{ marginLeft: "275px" }}
             onClick={handleLogout}
           >
             Logout

@@ -67,3 +67,11 @@
 .admin-container .back-link:hover {
   text-decoration: underline;
 }
+
+.logo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 175px;
+  height: auto;
+}
