@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Navbar from "./Navbar";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import doc from "../assets/doctor.png";
 import logo1 from "../assets/medical.png";
 import logo2 from "../assets/preventive.png";
@@ -8,7 +9,7 @@ import logo3 from "../assets/microscope.png";
 import logo4 from "../assets/cardiogram.png";
 import logo5 from "../assets/pill.png";
 
-const Home = () => {
+const Interaction = () => {
   const navigate = useNavigate();
   const userToken = localStorage.getItem("userToken");
 
@@ -24,7 +25,6 @@ const Home = () => {
   const handleSignUp = () => {
     navigate("/login");
   };
-
   const logosWithText = [
     { logo: logo1, text: "Logo 1 Text" },
     { logo: logo2, text: "Logo 2 Text" },
@@ -167,7 +167,7 @@ const Home = () => {
             eiusmod tempor{" "}
           </p>
           <div>
-            <h1 style={{ margin: "20px 0", color: "#1945DA" }}>
+            <h1 style={{ margin: "20px 0", color: "#0074d9" }}>
               200+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1000+
             </h1>
           </div>
@@ -193,8 +193,9 @@ const Home = () => {
           </h4>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
 
-export default Home;
+export default Interaction;

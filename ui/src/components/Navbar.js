@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
+import Avatar from "@mui/material/Avatar";
 import Toolbar from "@mui/material/Toolbar";
 import AppBar from "@mui/material/AppBar";
+import guardianMedLogo from "../assets/Group 13.png";
+
 import "./Navbar.css";
 
 const Navbar = ({
@@ -10,79 +13,92 @@ const Navbar = ({
   handleLogout,
   handleSignIn,
   handleSignUp,
+  userName,
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
-      setIsScrolled(scrollTop > 60); // Adjust this value based on your needs
+      setIsScrolled(scrollTop > 60);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const avatarStyle = {
+    marginLeft: "220px",
+    width: "30px",
+    height: "30px",
+    backgroundColor: "#23386f",
+    cursor: "pointer",
+  };
+
   const linkStyle = {
     display: "flex",
     alignItems: "center",
     color: isScrolled ? "#fff" : "#23408E",
-    fontWeight: "bold",
-    marginLeft: "20px",
-  };
-
-  // eslint-disable-next-line no-unused-vars
-  const lastLinkStyle = {
-    ...linkStyle,
-    marginLeft: "auto",
+    fontWeight: "small",
+    marginLeft: "30px",
+    fontSize: "12px",
   };
 
   return (
     <AppBar
       position="fixed"
       style={{
-        backgroundColor: isScrolled ? "#23408E" : "transparent",
-        transition: "background-color 0.3s ease",
+        backgroundColor: isScrolled ? "#000000" : "transparent",
+        transition: "background-color 0.1s ease",
       }}
       className="navbar"
     >
       <Toolbar style={{ display: "flex" }}>
         <Link to="/" className="link" style={linkStyle}>
-          <span style={{ marginRight: "8px", color: "#23408E" }}>GUARDIAN</span>
-          <span style={{ color: "#E80000" }}>MED</span>
-          <span style={{ marginLeft: "250px", color: "#23408E" }}>DRUGS</span>
+          <img
+            src={guardianMedLogo}
+            alt="Guardian Med Logo"
+            style={{
+              width: "170px",
+              height: "25px",
+              margin: "10px 0px 10px 5px",
+            }}
+          />
+          <span style={{ marginLeft: "250px" }}>DRUGS</span>
         </Link>
-        <Link to="/" className="link" style={linkStyle}>
+        <Link to="/check" className="link" style={linkStyle}>
           INTERACTION CHECKER
         </Link>
-        <Link to="/" className="link" style={linkStyle}>
+        <Link to="/pill" className="link" style={linkStyle}>
           PILL IDENTIFIER
         </Link>
-        <Link to="/" className="link" style={linkStyle}>
+        <Link to="/newdrugs" className="link" style={linkStyle}>
           NEW DRUGS
         </Link>
-        <Link to="/" className="link" style={linkStyle}>
+        <Link to="/side" className="link" style={linkStyle}>
           SIDE EFFECTS
         </Link>
         {isAuthenticated ? (
-          <Button
-            color="primary"
-            style={{ marginLeft: "275px" }}
-            onClick={handleLogout}
-          >
-            Logout
-          </Button>
+          <>
+            <Avatar alt="User Avatar" style={avatarStyle}>
+              {userName ? userName.charAt(0).toUpperCase() : ""}
+            </Avatar>
+            <Button
+              color="primary"
+              style={{ marginLeft: "25px" }}
+              onClick={handleLogout}
+            >
+              Logout
+            </Button>
+          </>
         ) : (
           <>
             <Button
               color="primary"
-              style={{ marginLeft: "225px" }}
+              style={{ marginLeft: "215px", color: "#2c2c2c" }}
               onClick={handleSignIn}
             >
-              Login
-            </Button>
-            <Button color="primary" onClick={handleSignUp}>
-              Sign Up
+              Login/Signup
             </Button>
           </>
         )}
