@@ -1,11 +1,12 @@
-const jwt = require('jsonwebtoken');
-const { userSecretKey } = require('../config');
+const jwt = require("jsonwebtoken");
+const { userSecretKey } = require("../config");
 
 exports.authenticateUser = (req, res, next) => {
-  const token = req.header('Authorization');
+  // Retrieve the token from cookies
+  const token = req.cookies.authToken;
 
   if (!token) {
-    return res.status(401).json({ message: 'Unauthorized' });
+    return res.status(401).json({ message: "Unauthorized" });
   }
 
   try {
@@ -16,6 +17,6 @@ exports.authenticateUser = (req, res, next) => {
     next();
   } catch (error) {
     console.error(error);
-    res.status(401).json({ message: 'Invalid token' });
+    res.status(401).json({ message: "Invalid token" });
   }
 };
