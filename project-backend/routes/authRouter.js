@@ -1,6 +1,8 @@
+/* eslint-disable no-unused-vars */
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const authController = require("../controllers/authController");
+const userController = require("../controllers/userController");
 
 const router = express.Router();
 

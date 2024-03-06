@@ -5,26 +5,27 @@ const cookieParser = require("cookie-parser");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
+const bodyParser = require("body-parser");
 
-const authRouter = require("./routers/authRouter");
-const userRouter = require("./routers/userRouter");
+const authRouter = require("./routes/authRouter");
+// const userRouter = require("./routes/usersRouter");
+const userRoutes = require("./routes/userRouter");
 
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 8000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
 app.use(helmet());
 app.use(morgan("dev"));
+app.use(bodyParser.json());
 
 app.use("/auth", authRouter);
-app.use("/user", userRouter);
+// app.use("/user", userRouter);
+app.use("/api", userRoutes);
 
 const MONGODB_URI =
   process.env.MONGODB_URI ||
@@ -58,9 +59,4 @@ process.on("SIGINT", () => {
     console.log("MongoDB connection closed");
     process.exit(0);
   });
-});
-
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send("Something went wrong!");
 });
